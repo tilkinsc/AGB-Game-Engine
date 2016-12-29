@@ -1,0 +1,105 @@
+/*
+ * main.c
+ *
+ *  Created on: Oct 12, 2016
+ *      Author: Cody
+ */
+
+#include "gba.h"
+#include "keyboard.h"
+
+#include "sprite.h"
+#include "entity.h"
+#include "background.h"
+#include "load_gfx.h"
+
+// images
+//#include "background/tileset.bmp.h"
+
+// maps
+#include "map/example_map.h"
+#include "map/font_map.h"
+
+// sprites
+#include "sprite/koopa_orig.h"
+#include "sprite/font.h"
+
+Background background0;
+Background background1;
+
+Entity kupo;
+
+void test0() {
+	kupo.x++;
+	sprite_move(kupo.sp, kupo.x, kupo.y);
+}
+
+void test1() {
+	kupo.y++;
+	sprite_move(kupo.sp, kupo.x, kupo.y);
+}
+
+void test2() {
+	kupo.x--;
+	sprite_move(kupo.sp, kupo.x, kupo.y);
+}
+
+void test3() {
+	kupo.y--;
+	sprite_move(kupo.sp, kupo.x, kupo.y);
+}
+
+void ccb() {
+	clear_charblock(screen_block(16));
+}
+
+int main(void) {
+
+	*Display = (MODE_0  | BG0 | BG1 | SP_ENABLE | SP_MAP_1D);
+
+	init_background(&background0, bg0c, bg0xs, bg0ys, 0, 1, 0, 1, 8, 0, 0);
+//	init_background(&background1, bg1c, bg1xs, bg1ys, 0, 2, 0, 1, 24, 0, 0);
+	update_background(&background0);
+//	update_background(&background1);
+
+	// background/map
+	//1
+	const CACHE_GFX *c = gfx_cache[0];
+	inject_palette(BG_PRAM, c->palette);
+	load_charblock(char_block(0), (u16*) c->pixels, c->sx, c->sy);
+	load_screenblock(screen_block(8), asd_map, asd_map_width, asd_map_height);
+	//2
+//	inject_palette(BG_PRAM, font_palette);
+//	load_charblock(char_block(2), (u16*) font_data, font_width, font_height);
+//	load_screenblock(screen_block(24), font_map, font_map_width, font_map_height);
+
+	// sprite
+	inject_palette(SP_PRAM, koopa_palette);
+	load_charblock(SIM, (u16*) koopa_data, (u24) koopa_width, (u24) koopa_height);
+	init_entity(&kupo, 0,0,0,0,0,0,0, init_sprite(0, 0, 2, 2, 0, 0, 16, 0));
+
+	// keyboard
+	key_events[4] = &test0;
+	key_events[5] = &test2;
+	key_events[6] = &test3;
+	key_events[7] = &test1;
+
+	int x = 0;
+	int y = 0;
+
+	int incre = 0;
+	while(1) {
+
+		VBLANK();
+		incre++;
+
+			poll_key_events();
+
+		draw_sprites();
+
+		move_background(&background0, x, y);
+//		move_background(&background1, x, y);
+	}
+
+	return 0;
+}
