@@ -12,7 +12,9 @@ setlocal
 	echo Running...
 
 	agbvba %name%
-
+	
+	goto end
+	
 endlocal
 
 :crash
@@ -20,4 +22,5 @@ endlocal
 	echo Didn't run because previous error.
 	exit /b
 
-echo Done.
+:end
+	echo Done.
