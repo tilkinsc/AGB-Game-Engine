@@ -18,10 +18,14 @@ setlocal
 	
 	del /Q obj\*.o
 	
-	echo Deleting trash test binaries
+	if [%1] EQU [t] (
 	
-	del /Q bin\*.elf
-	del /Q bin\*.gba
+		echo Deleting trash test binaries
+		
+		del /Q bin\*.elf
+		del /Q bin\*.gba
+	
+	)
 	
 endlocal
 
