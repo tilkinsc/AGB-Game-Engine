@@ -6,7 +6,7 @@ set %ERRORLEVEL%=0
 setlocal
 	
 	call using %AGBToolchain% q
-
+	
 	echo Compiling...
 	cd src
 		gcc -c *.c
