@@ -8,7 +8,7 @@
 #ifndef EXAMPLE_MAP_H_
 #define EXAMPLE_MAP_H_
 
-#include "../../types.h"
+#include "../src/types.h"
 
 const u24 asd_map_width;
 const u24 asd_map_height;

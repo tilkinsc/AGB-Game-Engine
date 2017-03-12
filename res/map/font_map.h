@@ -8,7 +8,7 @@
 #ifndef FONT_MAP_H_
 #define FONT_MAP_H_
 
-#include "../../types.h"
+#include "../src/types.h"
 
 const u24 font_map_width;
 const u24 font_map_height;

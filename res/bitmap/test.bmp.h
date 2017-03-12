@@ -8,7 +8,7 @@
 #ifndef TEST_BMP_H_
 #define TEST_BMP_H_
 
-#include "../../types.h"
+#include "../src/types.h"
 
 const u24 width_test_bmp;
 const u24 height_test_bmp;

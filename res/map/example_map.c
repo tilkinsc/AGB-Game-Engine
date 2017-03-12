@@ -1,8 +1,8 @@
 /* created by GBA Tile Editor */
 
-#include "example_map.h"
+#include "../src/types.h"
 
-#include "../../types.h"
+#include "example_map.h"
 
 const u24 asd_map_width = 32;
 const u24 asd_map_height = 64;
