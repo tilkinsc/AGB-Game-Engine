@@ -11,7 +11,6 @@
 #include "sprite.h"
 #include "entity.h"
 #include "background.h"
-#include "load_gfx.h"
 
 #include "gfx/common.h"
 #include "gfx/tile.h"
