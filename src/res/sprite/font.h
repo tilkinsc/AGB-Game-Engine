@@ -17,11 +17,13 @@
 #ifndef GRIT_FONT_H
 #define GRIT_FONT_H
 
-const unsigned int font_width;
-const unsigned int font_height;
+#include "../../types.h"
 
-const unsigned short font_palette[256] __attribute__((aligned(4)));
-const unsigned char font_data[65536] __attribute__((aligned(4)));
+const u24 font_width;
+const u24 font_height;
+
+const u16 font_palette[256] __attribute__((aligned(4)));
+const byte font_data[65536] __attribute__((aligned(4)));
 
 #endif // GRIT_FONT_H
 

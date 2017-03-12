@@ -1,6 +1,6 @@
 // background.bmp.h
 
-#include "../types.h"
+#include "../../types.h"
 
 #include "A.bmp.h"
 

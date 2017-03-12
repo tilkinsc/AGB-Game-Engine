@@ -8,7 +8,7 @@
 #ifndef TILESET_BMP_H_
 #define TILESET_BMP_H_
 
-#include "../types.h"
+#include "../../types.h"
 
 const u24 width_A_bmp;
 const u24 height_A_bmp;

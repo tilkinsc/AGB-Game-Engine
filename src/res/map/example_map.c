@@ -2,10 +2,12 @@
 
 #include "example_map.h"
 
-const unsigned int asd_map_width = 32;
-const unsigned int asd_map_height = 64;
+#include "../../types.h"
 
-const unsigned short asd_map[4096] __attribute__((aligned(4))) = {
+const u24 asd_map_width = 32;
+const u24 asd_map_height = 64;
+
+const u16 asd_map[4096] __attribute__((aligned(4))) = {
     0x0005, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
     0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 
     0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 
