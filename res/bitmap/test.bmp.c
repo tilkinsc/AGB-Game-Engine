@@ -1,7 +1,7 @@
 
 #include "test.bmp.h"
 
-#include "../src/types.h"
+#include "../../src/types.h"
 
 const u24 width_test_bmp = 128;
 const u24 height_test_bmp = 128;

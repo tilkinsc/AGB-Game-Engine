@@ -1,6 +1,6 @@
 /* created by GBA Tile Editor */
 
-#include "../src/types.h"
+#include "../../src/types.h"
 
 #include "example_map.h"
 

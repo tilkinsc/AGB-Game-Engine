@@ -8,7 +8,7 @@
 #ifndef KOOPA_ORIG_H_
 #define KOOPA_ORIG_H_
 
-#include "../src/types.h"
+#include "../../src/types.h"
 
 const u24 koopa_width;
 const u24 koopa_height;

@@ -1,7 +1,7 @@
 
 #include "font.h"
 
-#include "../src/types.h"
+#include "../../src/types.h"
 
 const u24 font_width = 32;
 const u24 font_height = 32;

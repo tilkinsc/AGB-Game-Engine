@@ -16,15 +16,15 @@
 #include "gfx/tile.h"
 
 // images
-#include "res/background/A.bmp.h"
+#include "../res/background/A.bmp.h"
 
 // maps
-#include "res/map/example_map.h"
-#include "res/map/font_map.h"
+#include "../res/map/example_map.h"
+#include "../res/map/font_map.h"
 
 // sprites
-#include "res/sprite/koopa_orig.h"
-#include "res/sprite/font.h"
+#include "../res/sprite/koopa_orig.h"
+#include "../res/sprite/font.h"
 
 Background background0;
 Background background1;

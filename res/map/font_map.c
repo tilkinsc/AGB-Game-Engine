@@ -5,7 +5,7 @@
  *      Author: Bud
  */
 
-#include "../src/types.h"
+#include "../../src/types.h"
 
 const u24 font_map_width = 32;
 const u24 font_map_height = 32;
