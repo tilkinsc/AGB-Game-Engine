@@ -8,11 +8,10 @@
 #ifndef RAND_H_
 #define RAND_H_
 
+int seed(int seed);
 
 int rand();
-int rand(int seed);
 
-int rand_range();
-int rand_range(int rand);
+int rand_range(int min, int max);
 
 #endif /* RAND_H_ */

@@ -8,7 +8,7 @@
 #ifndef GFX_H_
 #define GFX_H_
 
-#include "types.h"
+#include "../types.h"
 
 typedef struct Image {
 	u24 width;

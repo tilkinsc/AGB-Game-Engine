@@ -5,9 +5,9 @@
  *      Author: Cody
  */
 
-#include "gfx_bitmap.h"
+#include "bitmap.h"
 
-#include "gba.h"
+#include "../gba.h"
 
 void draw_pixel(vu16* buffer, s24 x, s24 y, byte color) {
 	u16 offset = (x + y * 240) >> 1;

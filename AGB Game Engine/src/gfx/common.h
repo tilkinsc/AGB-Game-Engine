@@ -8,7 +8,7 @@
 #ifndef GFX_COMMON_H_
 #define GFX_COMMON_H_
 
-#include "types.h"
+#include "../types.h"
 
 void inject_palette(vu16* ram, const u16* palette);
 void clear_palette(vu16* ram);

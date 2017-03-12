@@ -5,10 +5,10 @@
  *      Author: Cody
  */
 
-#include "gfx_common.h"
+#include "common.h"
 
-#include "gba.h"
-#include "types.h"
+#include "../gba.h"
+#include "../types.h"
 
 void inject_palette(vu16* ram, const u16* palette) {
 	dma16((u16*) palette, (u16*) ram, 256);

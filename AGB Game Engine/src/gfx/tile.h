@@ -8,7 +8,7 @@
 #ifndef GFX_H_
 #define GFX_H_
 
-#include "types.h"
+#include "../types.h"
 
 vu16* char_block(byte block);
 vu16* screen_block(byte block);

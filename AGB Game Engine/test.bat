@@ -1,16 +1,23 @@
 @echo off
 TITLE Running GBA test emulator...
 
+if %ERRORLEVEL% GTR 0 goto crash
+
 setlocal
 
-set name=comp.elf
+	set name=bin/comp.gba
 
-call using %AGBToolchain% q
+	call using %AGBToolchain% q
 
-echo Running...
+	echo Running...
 
-agbvba %name%
+	agbvba %name%
 
 endlocal
+
+:crash
+	endlocal
+	echo Didn't run because previous error.
+	exit /b
 
 echo Done.

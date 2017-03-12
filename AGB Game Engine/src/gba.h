@@ -63,6 +63,7 @@ vu16* SIM;
 vu16* OAM;
 
 void dma16(u16* source, u16* dest, u24 len);
+void dma16static(u16* source, u16* dest, u24 len);
 void dma32(u32* source, u32* dest, u24 len);
 
 void delay(u24 time);

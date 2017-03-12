@@ -1,11 +1,13 @@
 // background.bmp.h
 
+#include "../types.h"
+
 #include "A.bmp.h"
 
-const unsigned int width_A_bmp = 88;
-const unsigned int height_A_bmp = 48;
+const u24 width_A_bmp = 88;
+const u24 height_A_bmp = 48;
 
-const unsigned short palette_A_bmp[256] __attribute__((aligned(4))) = {
+const u16 palette_A_bmp[256] __attribute__((aligned(4))) = {
 
 	0x0000,0x0010,0x0200,0x0210,0x4000,0x4010,0x4200,0x6318,0x6378,0x7b34,0x0088,0x008c,0x0090,0x0094,0x0098,0x009c,
 	0x0100,0x0104,0x0108,0x010c,0x0110,0x0114,0x0118,0x011c,0x0180,0x0184,0x0188,0x018c,0x0190,0x0194,0x0198,0x019c,
@@ -26,7 +28,7 @@ const unsigned short palette_A_bmp[256] __attribute__((aligned(4))) = {
 
 };
 
-const unsigned short pixel_A_bmp[2112] __attribute__((aligned(4))) = {
+const u16 pixel_A_bmp[2112] __attribute__((aligned(4))) = {
 
 	0x0909,0x0909,0x0909,0x0909,
 	0x0909,0x0909,0x0909,0x0909,

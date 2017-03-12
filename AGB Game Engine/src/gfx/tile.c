@@ -5,10 +5,10 @@
  *      Author: Cody
  */
 
-#include "gfx_tile.h"
+#include "tile.h"
 
-#include "gba.h"
-#include "types.h"
+#include "../gba.h"
+#include "../types.h"
 
 vu16* char_block(byte block) {
 	return (vu16*) (0x6000000 + (block * 0x4000));

@@ -26,3 +26,7 @@ void fixed_mul(Fixed* fixed, Fixed* fixed2) {
 void fixed_div(Fixed* fixed, Fixed* fixed2) {
 	*fixed /= *fixed2;
 }
+
+void fixed_floor(Fixed* fixed, char resolution) {
+	*fixed = (*fixed >> resolution) << resolution;
+}
