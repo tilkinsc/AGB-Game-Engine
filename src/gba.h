@@ -44,13 +44,13 @@
 #define SP_MAP_1D 0x40
 
 // Display registers
-vu32* Display;
+vu64* Display;
 vu16* SLC;
 
 // DMA registers
-vu24* DMAs;
-vu24* DMAd;
-vu24* DMAc;
+vu32* DMAs;
+vu32* DMAd;
+vu32* DMAc;
 
 // RAM
 vu16* BG_PRAM;
@@ -62,10 +62,8 @@ vu16* VRAMb;
 vu16* SIM;
 vu16* OAM;
 
-void dma16(u16* source, u16* dest, u24 len);
-void dma16static(u16* source, u16* dest, u24 len);
-void dma32(u32* source, u32* dest, u24 len);
+void dma16(void* source, void* dest, u32 len);
 
-void delay(u24 time);
+void delay(u32 time);
 
 #endif /* GBA_H_ */

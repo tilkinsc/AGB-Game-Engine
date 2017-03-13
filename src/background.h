@@ -14,15 +14,15 @@ typedef struct Background {
 	vu16* bgc;
 	vs16* bgsx;
 	vs16* bgsy;
-	s24 x;
-	s24 y;
-	byte priority;
-	byte charblock;
-	byte mosaic;
-	byte color_mode;
-	byte screenblock;
-	byte wrapping;
-	byte size;
+	s32 x;
+	s32 y;
+	u32 priority;
+	u32 charblock;
+	u32 mosaic;
+	u32 color_mode;
+	u32 screenblock;
+	u32 wrapping;
+	u32 size;
 } Background;
 
 // Background registers
@@ -41,9 +41,9 @@ vs16* bg2ys;
 vs16* bg3xs;
 vs16* bg3ys;
 
-void init_background(Background* bg, vu16* bgc, vs16* bgsx, vs16* bgsy, byte priority, byte charblock, byte mosaic, byte color_mode, byte screenblock, byte wrapping, byte size);
+void init_background(Background* bg, vu16* bgc, vs16* bgsx, vs16* bgsy, u32 priority, u32 charblock, u32 mosaic, u32 color_mode, u32 screenblock, u32 wrapping, u32 size);
 
 void update_background(Background* bg);
-void move_background(Background* bg, s24 x, s24 y);
+void move_background(Background* bg, s32 x, s32 y);
 
 #endif /* BACKGROUND_H_ */

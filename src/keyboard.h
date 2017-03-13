@@ -23,12 +23,12 @@ typedef void (*KeyEvent)();
 #define KEY_R		0x100
 #define KEY_L		0x200
 
-u16* KEYS;
+u32* KEYS;
 
 KeyEvent key_events[10];
 
 void poll_key_events();
 
-byte keydown(short key);
+u32 keydown(u32 key);
 
 #endif /* KEYBOARD_H_ */

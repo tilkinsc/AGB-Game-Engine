@@ -6,6 +6,7 @@
  */
 
 #include "gba.h"
+#include "types.h"
 #include "keyboard.h"
 
 #include "sprite.h"
@@ -57,26 +58,26 @@ void ccb() {
 
 int main(void) {
 	
-	*Display = (MODE_0 | BG0 | BG1 | SP_ENABLE | SP_MAP_1D);
+	*Display = (MODE_0 | BG0 | SP_ENABLE | SP_MAP_1D);
 	
 	init_background(&background0, bg0c, bg0xs, bg0ys, 0, 0, 0, 1, 8, 0, 0);
-	init_background(&background1, bg1c, bg1xs, bg1ys, 0, 2, 0, 1, 24, 0, 0);
+//	init_background(&background1, bg1c, bg1xs, bg1ys, 0, 2, 0, 1, 24, 0, 0);
 	update_background(&background0);
-	update_background(&background1);
+//	update_background(&background1);
 	
 	// background/map
 	//1
 	inject_palette(BG_PRAM, palette_A_bmp);
-	load_charblock(char_block(0), (u16*) pixel_A_bmp, (u24) width_A_bmp, (u24) height_A_bmp);
+	load_charblock(char_block(0), (u16*) pixel_A_bmp, width_A_bmp, height_A_bmp);
 	load_screenblock(screen_block(8), asd_map, asd_map_width, asd_map_height);
 	//2
-	inject_palette(BG_PRAM, font_palette);
-	load_charblock(char_block(2), (u16*) font_data, font_width, font_height);
-	load_screenblock(screen_block(24), font_map, font_map_width, font_map_height);
+//	inject_palette(BG_PRAM, font_palette);
+//	load_charblock(char_block(2), (u16*) font_data, font_width, font_height);
+//	load_screenblock(screen_block(24), font_map, font_map_width, font_map_height);
 	
 	// sprite
 	inject_palette(SP_PRAM, koopa_palette);
-	load_charblock(SIM, (u16*) koopa_data, (u24) koopa_width, (u24) koopa_height);
+	load_charblock(SIM, (u16*) koopa_data, koopa_width, koopa_height);
 	init_entity(&kupo, 0,0,0,0,0,0,0, init_sprite(0, 0, 2, 2, 0, 0, 16, 0));
 	
 	// keyboard
@@ -85,8 +86,8 @@ int main(void) {
 	key_events[6] = &test3;
 	key_events[7] = &test1;
 	
-	int x = 0;
-	int y = 0;
+	u32 x = 0;
+	u32 y = 0;
 	
 	while(1) {
 
@@ -97,7 +98,7 @@ int main(void) {
 		draw_sprites();
 
 		move_background(&background0, x, y);
-		move_background(&background1, x, y);
+//		move_background(&background1, x, y);
 	}
 
 	return 0;

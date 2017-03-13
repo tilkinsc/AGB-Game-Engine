@@ -7,9 +7,9 @@
 
 #include "keyboard.h"
 
-u16 current;
+u32 current;
 
-u16* KEYS = (u16*) 0x04000130;
+u32* KEYS = (u32*) 0x04000130;
 
 void nothing() {}
 
@@ -17,7 +17,7 @@ KeyEvent key_events[10] = {
 	&nothing, &nothing, &nothing, &nothing, &nothing, &nothing, &nothing, &nothing, &nothing, &nothing
 };
 
-byte keydown(short key) {
+u32 keydown(u32 key) {
 	return current & key;
 }
 

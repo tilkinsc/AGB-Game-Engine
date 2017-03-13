@@ -10,8 +10,8 @@
 
 #include "../../src/types.h"
 
-const u24 asd_map_width;
-const u24 asd_map_height;
+const u32 asd_map_width;
+const u32 asd_map_height;
 
 const u16 asd_map[4096] __attribute__((aligned(4)));
 
