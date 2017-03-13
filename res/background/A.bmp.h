@@ -10,8 +10,8 @@
 
 #include "../../src/types.h"
 
-const u24 width_A_bmp;
-const u24 height_A_bmp;
+const u32 width_A_bmp;
+const u32 height_A_bmp;
 
 const u16 palette_A_bmp[256] __attribute__((aligned(4)));
 const u16 pixel_A_bmp[2112] __attribute__((aligned(4)));

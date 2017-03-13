@@ -4,8 +4,8 @@
 
 #include "A.bmp.h"
 
-const u24 width_A_bmp = 88;
-const u24 height_A_bmp = 48;
+const u32 width_A_bmp = 88;
+const u32 height_A_bmp = 48;
 
 const u16 palette_A_bmp[256] __attribute__((aligned(4))) = {
 

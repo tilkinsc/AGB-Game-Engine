@@ -27,7 +27,7 @@ vs16* bg3ys = (vs16*) 0x400001e;
 
 void init_background(Background* bg,
 		vu16* bgc, vs16* bgsx, vs16* bgsy,
-		byte priority, byte charblock, byte mosaic, byte color_mode, byte screenblock, byte wrapping, byte size) {
+		u32 priority, u32 charblock, u32 mosaic, u32 color_mode, u32 screenblock, u32 wrapping, u32 size) {
 	bg->bgc = bgc;
 	bg->x = 0;
 	bg->y = 0;
@@ -51,7 +51,7 @@ void update_background(Background* bg) {
 			(bg->size << 14);	 	  /* background size, 0 is 256			*/
 }
 
-void move_background(Background* bg, s24 x, s24 y) {
+void move_background(Background* bg, s32 x, s32 y) {
 	bg->x = x;
 	bg->y = y;
 	*bg->bgsx = bg->x;

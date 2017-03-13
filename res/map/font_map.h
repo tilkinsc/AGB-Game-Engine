@@ -10,8 +10,8 @@
 
 #include "../../src/types.h"
 
-const u24 font_map_width;
-const u24 font_map_height;
+const u32 font_map_width;
+const u32 font_map_height;
 
 const u16 font_map[4] __attribute__((aligned(4)));
 

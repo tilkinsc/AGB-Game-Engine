@@ -9,11 +9,11 @@ setlocal
 	
 	echo Compiling test...
 	cd res
-		gcc -c background/*.c
-		gcc -c bitmap/*.c
-		gcc -c font/*.c
-		gcc -c map/*.c
-		gcc -c sprite/*.c
+		gcc -O -Wall -c background/*.c
+		gcc -O -Wall -c bitmap/*.c
+		gcc -O -Wall -c font/*.c
+		gcc -O -Wall -c map/*.c
+		gcc -O -Wall -c sprite/*.c
 		
 		if %ERRORLEVEL% GTR 0 goto crash
 		
@@ -22,8 +22,8 @@ setlocal
 	
 	echo Compiling library source...
 	cd src
-		gcc -c *.c
-		gcc -c gfx/*.c
+		gcc -O -Wall -c *.c
+		gcc -O -Wall -c gfx/*.c
 		
 		if %ERRORLEVEL% GTR 0 goto crash
 		
@@ -34,7 +34,7 @@ setlocal
 	
 	echo Linking, generating executable elf, gba
 	cd obj
-		gcc -o comp.elf *.o
+		gcc -O -Wall -o comp.elf *.o
 		
 		if %ERRORLEVEL% GTR 0 goto crash
 		echo ELF generated.
@@ -45,10 +45,8 @@ setlocal
 		if %ERRORLEVEL% GTR 0 goto crash
 		echo GBA generated.
 		
-		echo %ERRORLEVEL%
 		move comp.elf ../bin
 		move comp.gba ../bin
-		echo %ERRORLEVEL%
 	cd ..
 	
 	if %ERRORLEVEL% GTR 0 goto crash 

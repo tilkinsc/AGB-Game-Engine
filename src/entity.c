@@ -7,7 +7,7 @@
 
 #include "entity.h"
 
-void init_entity(Entity* entity, s24 x, s24 y, byte xflip, byte yflip, byte step, u24 frame, u24 fflip, Sprite* sprite) {
+void init_entity(Entity* entity, s32 x, s32 y, u32 xflip, u32 yflip, u32 step, u32 frame, u32 fflip, Sprite* sprite) {
 	entity->x = x;
 	entity->y = y;
 	entity->xflip = xflip;

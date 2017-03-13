@@ -11,20 +11,23 @@
 #include "types.h"
 
 typedef struct Sprite {
-	u16 att0, att1, att2, att3;
+	u16 att0;
+	u16 att1;
+	u16 att2;
+	u16 att3;
 } Sprite;
 
 Sprite sprites[128];
 
-int sprite_index;
+u32 sprite_index;
 
-Sprite* init_sprite(u24 x, u24 y, u24 sizex, u24 sizey, byte hflip, byte vflip, int tindex, int priority);
+Sprite* init_sprite(u32 x, u32 y, u32 sizex, u32 sizey, u32 hflip, u32 vflip, u32 tindex, u32 priority);
 
 void draw_sprites();
 
-void sprite_move(Sprite* sp, s24 x, s24 y);
-void sprite_animate(Sprite* sp, u24 track);
-void sprite_flipx(Sprite* sp, byte option);
-void sprite_flipy(Sprite* sp, byte option);
+void sprite_move(Sprite* sp, s32 x, s32 y);
+void sprite_animate(Sprite* sp, u32 track);
+void sprite_flipx(Sprite* sp, u32 option);
+void sprite_flipy(Sprite* sp, u32 option);
 
 #endif /* SPRITE_H_ */

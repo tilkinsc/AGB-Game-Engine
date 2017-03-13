@@ -16,7 +16,7 @@ void inject_palette(vu16* ram, const u16* palette) {
 
 // we can't use DMA???
 void clear_palette(vu16* ram) {
-	s24 colors;
+	u32 colors;
 	for (colors=0; colors<256; colors++)
 		ram[colors] = 0x0;
 }

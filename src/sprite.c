@@ -10,7 +10,7 @@
 #include "gba.h"
 
 
-Sprite* init_sprite(u24 x, u24 y, u24 sizex, u24 sizey, byte hflip, byte vflip, int tindex, int priority) {
+Sprite* init_sprite(u32 x, u32 y, u32 sizex, u32 sizey, u32 hflip, u32 vflip, u32 tindex, u32 priority) {
 	sprites[sprite_index].att0 =
 			 y			|
 			(0 << 8)	|
@@ -31,28 +31,29 @@ Sprite* init_sprite(u24 x, u24 y, u24 sizex, u24 sizey, byte hflip, byte vflip, 
 	return &sprites[sprite_index++];
 }
 
+// TODO: check out
 void draw_sprites() {
 	dma16((u16*) sprites, (u16*) OAM, 128 * 4);
 }
 
-void sprite_move(Sprite* sp, s24 x, s24 y) {
+void sprite_move(Sprite* sp, s32 x, s32 y) {
 	sp->att0 &= 0xFF00;
 	sp->att0 |= (y & 0xFF);
 	sp->att1 &= 0xFe00;
 	sp->att1 |= (x & 0x1FF);
 }
 
-void sprite_animate(Sprite* sp, u24 track) {
+void sprite_animate(Sprite* sp, u32 track) {
 	sp->att2 &= 0xFc00;
 	sp->att2 |= track & 0x03FF;
 }
 
-void sprite_flipx(Sprite* sp, byte option) {
+void sprite_flipx(Sprite* sp, u32 option) {
 	if(option) sp->att1 |= 0x2000;
 	else sp->att1 &= 0xdFFF;
 }
 
-void sprite_flipy(Sprite* sp, byte option) {
+void sprite_flipy(Sprite* sp, u32 option) {
 	if(option) sp->att1 |= 0x1000;
 	else sp->att1 &= 0xEFFF;
 }

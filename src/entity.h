@@ -12,17 +12,17 @@
 #include "types.h"
 
 typedef struct Entity {
-	s24 x;
-	s24 y;
-	byte xflip;
-	byte yflip;
-	byte step;
-	u24 frame;
-	u24 fcount;
-	u24 fflip;
+	s32 x;
+	s32 y;
+	u32 xflip;
+	u32 yflip;
+	u32 step;
+	u32 frame;
+	u32 fcount;
+	u32 fflip;
 	Sprite* sp;
 } Entity;
 
-void init_entity(Entity* entity, s24 x, s24 y, byte xflip, byte yflip, byte step, u24 frame, u24 fflip, Sprite* sprite);
+void init_entity(Entity* entity, s32 x, s32 y, u32 xflip, u32 yflip, u32 step, u32 frame, u32 fflip, Sprite* sprite);
 
 #endif /* ENTITY_H_ */
