@@ -31,6 +31,8 @@ void init_background(Background* bg,
 	bg->bgc = bgc;
 	bg->x = 0;
 	bg->y = 0;
+	bg->bgsx = bgsx;
+	bg->bgsy = bgsy;
 	bg->priority = priority;
 	bg->charblock = charblock;
 	bg->mosaic = mosaic;
