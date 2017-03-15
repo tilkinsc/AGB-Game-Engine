@@ -12,6 +12,7 @@
 
 void strset(u8* data, u8 init, u32 len);
 
-void itoa(s32 num, s32 len, s8* str, s32 base);
+void uitoa(u32 num, u32 len, u8* str, u32 base);
+void sitoa(s32 num, u32 len, s8* str, u32 base);
 
 #endif
