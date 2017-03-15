@@ -14,8 +14,8 @@ typedef struct Background {
 	vu16* bgc;
 	vs16* bgsx;
 	vs16* bgsy;
-	s32 x;
-	s32 y;
+	s16 x; // is this 32 or 16?
+	s16 y;
 	u32 priority;
 	u32 charblock;
 	u32 mosaic;

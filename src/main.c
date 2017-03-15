@@ -5,6 +5,8 @@
  *      Author: Cody
  */
 
+#include <stdio.h>
+
 #include "gba.h"
 #include "types.h"
 #include "keyboard.h"
@@ -27,6 +29,8 @@
 #include "../res/sprite/koopa_orig.h"
 #include "../res/sprite/font.h"
 
+#include "string.h"
+
 Background background0;
 Background background1;
 
@@ -34,72 +38,89 @@ Entity kupo;
 
 void test0() {
 	kupo.x++;
-	sprite_move(kupo.sp, kupo.x, kupo.y);
 }
 
 void test1() {
 	kupo.y++;
-	sprite_move(kupo.sp, kupo.x, kupo.y);
 }
 
 void test2() {
 	kupo.x--;
-	sprite_move(kupo.sp, kupo.x, kupo.y);
 }
 
 void test3() {
 	kupo.y--;
-	sprite_move(kupo.sp, kupo.x, kupo.y);
 }
 
 void ccb() {
-	clear_charblock(screen_block(16));
+	u32 size = 20;
+	
+	s32 test = -21;
+	
+	// "testing string"
+	u8 string[14] = {
+	        52,69,83,84,73,78,71,0,83,84,82,73,78,71,
+	};
+	
+	u8 str2[3];
+	sitoa(test, 3, str2, 10);
+	// uitoa(size, 2, str2, 10); // unsigned test
+	//strset(str2, 33, 3); // strset test
+	
+	cpuset8((void*)screen_block(24), (u8*)string, 14, 0);
+	cpuset8((void*)screen_block(24)+30, (u8*)str2, 3, 32);
+	// cpuset8((void*)screen_block(24)+30, (u8*)str2, 2, 32); // unsigned test
 }
 
 int main(void) {
 	
-	*Display = (MODE_0 | BG0 | SP_ENABLE | SP_MAP_1D);
+	*Display = (MODE_0 | BG0 | BG1 | SP_ENABLE | SP_MAP_1D);
 	
-	init_background(&background0, bg0c, bg0xs, bg0ys, 0, 0, 0, 1, 8, 0, 0);
-//	init_background(&background1, bg1c, bg1xs, bg1ys, 0, 2, 0, 1, 24, 0, 0);
+	init_background(&background0, bg0c, bg0xs, bg0ys, 1, 0, 0, 1, 8, 0, 0);
+	init_background(&background1, bg1c, bg1xs, bg1ys, 0, 2, 0, 1, 24, 0, 0);
 	update_background(&background0);
-//	update_background(&background1);
+	update_background(&background1);
 	
 	// background/map
 	//1
 	inject_palette(BG_PRAM, palette_A_bmp);
-	load_charblock(char_block(0), (u16*) pixel_A_bmp, width_A_bmp, height_A_bmp);
-	load_screenblock(screen_block(8), asd_map, asd_map_width, asd_map_height);
+	dma3_16((u16*)pixel_A_bmp, (u16*)char_block(0), width_A_bmp * height_A_bmp);
+	dma3_16((u16*)asd_map, (u16*)screen_block(8), asd_map_width * asd_map_height);
 	//2
-//	inject_palette(BG_PRAM, font_palette);
-//	load_charblock(char_block(2), (u16*) font_data, font_width, font_height);
-//	load_screenblock(screen_block(24), font_map, font_map_width, font_map_height);
+	//inject_palette(BG_PRAM, font_palette);
+	dma3_16((u16*)font_data, (u16*)char_block(2), font_width * font_height);
+	dma3_16((u16*)font_map, (u16*)screen_block(24), font_map_width * font_map_height);
 	
 	// sprite
 	inject_palette(SP_PRAM, koopa_palette);
-	load_charblock(SIM, (u16*) koopa_data, koopa_width, koopa_height);
+	dma3_16((u16*)koopa_data, (u16*)SIM, koopa_width * koopa_height);
 	init_entity(&kupo, 0,0,0,0,0,0,0, init_sprite(0, 0, 2, 2, 0, 0, 16, 0));
 	
 	// keyboard
+	key_events[3] = &ccb;
 	key_events[4] = &test0;
 	key_events[5] = &test2;
 	key_events[6] = &test3;
 	key_events[7] = &test1;
 	
-	u32 x = 0;
-	u32 y = 0;
+	s16 bg1x = -32;
+	s16 bg1y = -32;
+	
+	s16 bg2x = 0;
+	s16 bg2y = 0;
 	
 	while(1) {
-
+		
 		VBLANK();
-
+		
 		poll_key_events();
-
+		
+		sprite_move(kupo.sp, kupo.x, kupo.y);
 		draw_sprites();
-
-		move_background(&background0, x, y);
-//		move_background(&background1, x, y);
+		
+		move_background(&background0, bg1x, bg1y);
+		move_background(&background1, bg2x, bg2y);
 	}
-
+	
 	return 0;
 }

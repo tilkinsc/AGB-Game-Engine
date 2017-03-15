@@ -33,7 +33,7 @@ Sprite* init_sprite(u32 x, u32 y, u32 sizex, u32 sizey, u32 hflip, u32 vflip, u3
 
 // TODO: check out
 void draw_sprites() {
-	dma16((u16*) sprites, (u16*) OAM, 128 * 4);
+	dma3_16((u16*) sprites, (u16*) OAM, 128 * 4);
 }
 
 void sprite_move(Sprite* sp, s32 x, s32 y) {

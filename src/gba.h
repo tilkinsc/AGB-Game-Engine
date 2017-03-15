@@ -20,7 +20,7 @@
 // DMA
 #define DMA_ENABLE 0x80000000
 #define DMA16 0x0
-#define DMA32 0x4000000
+#define DMA32 0x1
 
 // Tile Modes
 #define MODE_0 0x0
@@ -48,9 +48,9 @@ vu64* Display;
 vu16* SLC;
 
 // DMA registers
-vu32* DMAs;
-vu32* DMAd;
-vu32* DMAc;
+vu32* DMA3s;
+vu32* DMA3d;
+vu32* DMA3c;
 
 // RAM
 vu16* BG_PRAM;
@@ -62,7 +62,12 @@ vu16* VRAMb;
 vu16* SIM;
 vu16* OAM;
 
-void dma16(void* source, void* dest, u32 len);
+void cpuset8(vu16* a, u8* b, u32 length, u32 offset);
+void cpuset16(vu16* a, u16* b, u32 length, u32 offset);
+
+void dma3_16(void* source, void* dest, u32 len);
+void dma3_32(void* source, void* dest, u32 len);
+
 
 void delay(u32 time);
 
