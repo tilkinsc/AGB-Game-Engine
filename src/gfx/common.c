@@ -11,7 +11,7 @@
 #include "../types.h"
 
 void inject_palette(vu16* ram, const u16* palette) {
-	dma16((u16*) palette, (u16*) ram, 256);
+	dma3_16((u16*) palette, (u16*) ram, 256);
 }
 
 // we can't use DMA???
