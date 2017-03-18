@@ -10,6 +10,7 @@
 #include "gba.h"
 #include "types.h"
 #include "keyboard.h"
+#include "fixed.h"
 
 #include "sprite.h"
 #include "entity.h"
@@ -63,12 +64,17 @@ void ccb() {
 	};
 	
 	u8 str2[3];
-	sitoa(test, 3, str2, 10);
-	// uitoa(size, 2, str2, 10); // unsigned test
-	//strset(str2, 33, 3); // strset test
+	uitoa(size, 3, str2, 10);
+//	uitoa(size, 2, str2, 10); // unsigned test
+//	strset(str2, 33, 3); // strset test
+	
+	Fixed f = (2 << FIXED_PRECISION) | 0x7D71;
+	
+	u8 buffer[11];
+	fixed_snprint(buffer, &f, 11);
 	
 	cpuset8((void*)screen_block(24), (u8*)string, 14, 0);
-	cpuset8((void*)screen_block(24)+30, (u8*)str2, 3, 32);
+	cpuset8((void*)screen_block(24)+30, (u8*)buffer, 11, 32);
 	// cpuset8((void*)screen_block(24)+30, (u8*)str2, 2, 32); // unsigned test
 }
 

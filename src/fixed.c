@@ -6,28 +6,42 @@
  */
 
 #include "fixed.h"
+#include "string.h"
 
-void fixed_init(Fixed* fixed, unsigned int data, char resolution, char suffix) {
-	*fixed = (data << resolution) | suffix;
+#include "stdio.h"
+
+void fixed_set(Fixed* fixed, unsigned long long num) {
+	*fixed = num << FIXED_PRECISION;
 }
 
-void fixed_add(Fixed* fixed, Fixed* fixed2) {
-	*fixed += *fixed2;
+unsigned long long fixed_unset(Fixed* fixed) {
+	return *fixed >> FIXED_PRECISION;
 }
 
-void fixed_sub(Fixed* fixed, Fixed* fixed2) {
-	*fixed -= *fixed2;
+void fixed_md(Fixed* fixed, unsigned long long num) {
+	*fixed *= num;
+	*fixed >>= FIXED_OPERATION_PRECISION;
 }
 
-void fixed_mul(Fixed* fixed, Fixed* fixed2) {
-	*fixed *= *fixed2;
+void fixed_floor(Fixed* fixed) {
+	*fixed &= FIXED_UPPER_MASK;
 }
 
-void fixed_div(Fixed* fixed, Fixed* fixed2) {
-	*fixed /= *fixed2;
+void fixed_ceil(Fixed* fixed) {
+	*fixed = ((*fixed - 1) | FIXED_LOWER_MASK) + 1; 
 }
 
-// TODO: not implemented or tested
-void fixed_floor(Fixed* fixed, char resolution) {
-	*fixed = (*fixed >> resolution) << resolution;
+void fixed_round(Fixed* fixed, Fixed px, Fixed py) {
+	fixed_md(fixed, px);
+	*fixed += FIXED_MAGIC_0_5;
+	fixed_floor(fixed);
+	fixed_md(fixed, py);
 }
+
+void fixed_snprint(char* out, Fixed* fixed, unsigned int size) {
+	Fixed temp = *fixed;
+	temp &= FIXED_LOWER_MASK;
+	fixed_md(&temp, FIXED_MAGIC_MUL_1000);
+	snprintf(out, size+size, "%u.%u", (unsigned int)*fixed >> 16, (unsigned int)temp >> 16);
+}
+
