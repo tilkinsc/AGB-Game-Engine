@@ -6,7 +6,9 @@ setlocal
 	echo Deleting test stuff...
 	
 	cd test
-	
+		
+		del /Q obj\*.o
+		
 		del /Q bin\*.elf
 		del /Q bin\*.gba
 		

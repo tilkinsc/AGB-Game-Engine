@@ -5,7 +5,7 @@ if %ERRORLEVEL% GTR 0 goto crash
 
 setlocal
 
-	set name=bin/comp.gba
+	set name=test/bin/comp.gba
 
 	call using %AGBToolchain% q
 
