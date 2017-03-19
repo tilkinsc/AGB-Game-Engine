@@ -8,7 +8,7 @@
 #ifndef FONT_MAP_H_
 #define FONT_MAP_H_
 
-#include "../../src/types.h"
+#include "gbage/types.h"
 
 const u32 font_map_width;
 const u32 font_map_height;

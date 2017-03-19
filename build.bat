@@ -7,19 +7,6 @@ setlocal
 	
 	call using %AGBToolchain% q
 	
-	echo Compiling test...
-	cd res
-		gcc -O -Wall -c background/*.c
-		gcc -O -Wall -c bitmap/*.c
-		gcc -O -Wall -c font/*.c
-		gcc -O -Wall -c map/*.c
-		gcc -O -Wall -c sprite/*.c
-		
-		if %ERRORLEVEL% GTR 0 goto crash
-		
-		move /Y *.o ../obj
-	cd ..
-	
 	echo Compiling library source...
 	cd src
 		gcc -O -Wall -c *.c
@@ -30,26 +17,60 @@ setlocal
 		move /Y *.o ../obj
 	cd ..
 	
-	if %ERRORLEVEL% GTR 0 goto crash
-	
-	echo Linking, generating executable elf, gba
+	echo Creating static library...
 	cd obj
-		gcc -O -Wall -o comp.elf *.o
+		ar rcs libgbage.a *.o
 		
 		if %ERRORLEVEL% GTR 0 goto crash
-		echo ELF generated.
 		
+		del /Q *.o
+		move /Y *.a ..
+	cd ..
+	
+	
+	
+	echo Loading library into test...
+	copy /Y *.a test\lib\
+	
+	mkdir test\include\gbage
+	mkdir test\include\gbage\gfx
+	copy /Y src\*.h test\include\gbage\
+	copy /Y src\gfx\*.h test\include\gbage\gfx\
+	
+	
+	
+	echo Compiling test...
+	cd test
+	cd res
+		gcc -O -Wall -I../include/ -c ../src/*.c
+		gcc -O -Wall -I../include/ -c background/*.c
+		gcc -O -Wall -I../include/ -c bitmap/*.c
+		gcc -O -Wall -I../include/ -c font/*.c
+		gcc -O -Wall -I../include/ -c map/*.c
+		gcc -O -Wall -I../include/ -c sprite/*.c
+		
+		if %ERRORLEVEL% GTR 0 goto crash
+		
+		move /Y *.o ..\..\obj
+	cd ..
+	cd ..
+	
+	echo Linking test...
+	cd obj
+		gcc -static -O -Wall -I../test/include/ -L../test/lib/ -o comp.elf *.o -lgbage
+		
+		if %ERRORLEVEL% GTR 0 goto crash
+		
+		del /Q *.o
 		
 		objcopy -O binary comp.elf comp.gba
 		
 		if %ERRORLEVEL% GTR 0 goto crash
-		echo GBA generated.
 		
-		move comp.elf ../bin
-		move comp.gba ../bin
+		move comp.elf ../test/bin
+		move comp.gba ../test/bin
 	cd ..
 	
-	if %ERRORLEVEL% GTR 0 goto crash 
 	goto end
 	
 endlocal

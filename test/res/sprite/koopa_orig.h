@@ -8,7 +8,7 @@
 #ifndef KOOPA_ORIG_H_
 #define KOOPA_ORIG_H_
 
-#include "../../src/types.h"
+#include "gbage/types.h"
 
 const u32 koopa_width;
 const u32 koopa_height;

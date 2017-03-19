@@ -17,7 +17,7 @@
 #ifndef GRIT_FONT_H
 #define GRIT_FONT_H
 
-#include "../../src/types.h"
+#include "gbage/types.h"
 
 const u32 font_width;
 const u32 font_height;

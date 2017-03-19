@@ -1,7 +1,7 @@
 
 #include "test.bmp.h"
 
-#include "../../src/types.h"
+#include "gbage/types.h"
 
 const u32 width_test_bmp = 128;
 const u32 height_test_bmp = 128;

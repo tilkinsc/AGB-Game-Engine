@@ -8,7 +8,7 @@
 #ifndef EXAMPLE_MAP_H_
 #define EXAMPLE_MAP_H_
 
-#include "../../src/types.h"
+#include "gbage/types.h"
 
 const u32 asd_map_width;
 const u32 asd_map_height;

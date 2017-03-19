@@ -5,7 +5,7 @@
  *      Author: Bud
  */
 
-#include "../../src/types.h"
+#include "gbage/types.h"
 
 const u32 font_map_width = 32;
 const u32 font_map_height = 32;

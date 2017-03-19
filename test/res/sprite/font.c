@@ -1,7 +1,7 @@
 
 #include "font.h"
 
-#include "../../src/types.h"
+#include "gbage/types.h"
 
 const u32 font_width = 760;
 const u32 font_height = 8;

@@ -8,7 +8,7 @@
 #ifndef FONT_TEST_H_
 #define FONT_TEST_H_
 
-#include "../../src/types.h"
+#include "gbage/types.h"
 
 const u32 bitpack_test_font[8] __attribute__((aligned(4)));
 
