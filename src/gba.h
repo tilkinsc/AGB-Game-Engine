@@ -11,16 +11,16 @@
 #include "types.h"
 
 // Screen resolution
-#define WIDTH 240
-#define HEIGHT 160
+#define GBA_WIDTH 240
+#define GBA_HEIGHT 160
 
 // Option numbers
 #define VRAM_BUFFER 0x10;
 
 // DMA
 #define DMA_ENABLE 0x80000000
-#define DMA16 0x0
-#define DMA32 0x1
+#define DMA_16 0x0
+#define DMA_32 0x1
 
 // Tile Modes
 #define MODE_0 0x0
@@ -33,10 +33,10 @@
 #define MODE_5 0x5
 
 // Backgrounds
-#define BG0 0x100
-#define BG1 0x200
-#define BG2 0x400
-#define BG3 0x800
+#define BG_0 0x100
+#define BG_1 0x200
+#define BG_2 0x400
+#define BG_3 0x800
 
 // Sprites
 #define SP_ENABLE 0x1000
@@ -44,7 +44,7 @@
 #define SP_MAP_1D 0x40
 
 // Display registers
-vu64* Display;
+vu64* DISPLAY;
 vu16* SLC;
 
 // DMA registers
@@ -53,8 +53,8 @@ vu32* DMA3d;
 vu32* DMA3c;
 
 // RAM
-vu16* BG_PRAM;
-vu16* SP_PRAM;
+vu16* PRAM_BG;
+vu16* PRAM_SP;
 
 vu16* VRAMf;
 vu16* VRAMb;
@@ -67,7 +67,6 @@ void cpuset16(vu16* a, u16* b, u32 length, u32 offset);
 
 void dma3_16(void* source, void* dest, u32 len);
 void dma3_32(void* source, void* dest, u32 len);
-
 
 void delay(u32 time);
 
