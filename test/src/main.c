@@ -34,22 +34,23 @@
 Background background0;
 Background background1;
 
-Entity kupo;
+Sprite* kupo_sp;
+Entity kupo_ent;
 
 void test0() {
-	kupo.x++;
+	kupo_ent.x++;
 }
 
 void test1() {
-	kupo.y++;
+	kupo_ent.y++;
 }
 
 void test2() {
-	kupo.x--;
+	kupo_ent.x--;
 }
 
 void test3() {
-	kupo.y--;
+	kupo_ent.y--;
 }
 
 void ccb() {
@@ -87,19 +88,20 @@ int main(void) {
 	update_background(&background1);
 	
 	// background/map
-	//1
-	inject_palette(BG_PRAM, palette_A_bmp);
+	// bg 1
+	dma3_16((u16*)palette_A_bmp, (u16*)BG_PRAM, 256);
 	dma3_16((u16*)pixel_A_bmp, (u16*)char_block(0), width_A_bmp * height_A_bmp);
 	dma3_16((u16*)asd_map, (u16*)screen_block(8), asd_map_width * asd_map_height);
-	//2
-	//inject_palette(BG_PRAM, font_palette);
+	// bg 2
 	dma3_16((u16*)font_data, (u16*)char_block(2), font_width * font_height);
 	dma3_16((u16*)font_map, (u16*)screen_block(24), font_map_width * font_map_height);
 	
 	// sprite
-	inject_palette(SP_PRAM, koopa_palette);
+	dma3_16((u16*)koopa_palette, (u16*)SP_PRAM, 256);
 	dma3_16((u16*)koopa_data, (u16*)SIM, koopa_width * koopa_height);
-	init_entity(&kupo, 0,0,0,0,0,0,0, init_sprite(0, 0, 2, 2, 0, 0, 16, 0));
+	
+	kupo_sp = init_sprite(0, 0, 0, 2, 2, 0, 0, 16, 0);
+	init_entity(&kupo_ent, 0,0,0,0,0,0,0, kupo_sp);
 	
 	// keyboard
 	key_events[3] = &ccb;
@@ -120,7 +122,7 @@ int main(void) {
 		
 		poll_key_events();
 		
-		sprite_move(kupo.sp, kupo.x, kupo.y);
+		sprite_move(kupo_ent.sp, kupo_ent.x, kupo_ent.y);
 		draw_sprites();
 		
 		move_background(&background0, bg1x, bg1y);
