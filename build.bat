@@ -10,8 +10,9 @@ setlocal
 	echo Compiling library source...
 	cd src
 		gcc -O -Wall -c *.c
-		gcc -O -Wall -c gfx/*.c
+		if %ERRORLEVEL% GTR 0 goto crash
 		
+		gcc -O -Wall -c gfx/*.c
 		if %ERRORLEVEL% GTR 0 goto crash
 		
 		move /Y *.o ../obj
@@ -20,7 +21,6 @@ setlocal
 	echo Creating static library...
 	cd obj
 		ar rcs libgbage.a *.o
-		
 		if %ERRORLEVEL% GTR 0 goto crash
 		
 		del /Q *.o
@@ -42,13 +42,18 @@ setlocal
 	echo Compiling test...
 	cd test
 	cd res
-		gcc -O -Wall -I../include/ -c ../src/*.c
-		gcc -O -Wall -I../include/ -c background/*.c
-		gcc -O -Wall -I../include/ -c bitmap/*.c
-		gcc -O -Wall -I../include/ -c font/*.c
-		gcc -O -Wall -I../include/ -c map/*.c
-		gcc -O -Wall -I../include/ -c sprite/*.c
+		gcc -O -Werror -Wall -I../include/ -c ../src/*.c
+		if %ERRORLEVEL% GTR 0 goto crash
 		
+		gcc -O -Werror -Wall -I../include/ -c background/*.c
+		if %ERRORLEVEL% GTR 0 goto crash
+		gcc -O -Werror -Wall -I../include/ -c bitmap/*.c
+		if %ERRORLEVEL% GTR 0 goto crash
+		gcc -O -Werror -Wall -I../include/ -c font/*.c
+		if %ERRORLEVEL% GTR 0 goto crash
+		gcc -O -Werror -Wall -I../include/ -c map/*.c
+		if %ERRORLEVEL% GTR 0 goto crash
+		gcc -O -Werror -Wall -I../include/ -c sprite/*.c
 		if %ERRORLEVEL% GTR 0 goto crash
 		
 		move /Y *.o ..\..\obj
@@ -57,14 +62,12 @@ setlocal
 	
 	echo Linking test...
 	cd obj
-		gcc -static -O -Wall -I../test/include/ -L../test/lib/ -o comp.elf *.o -lgbage
-		
+		gcc -static -O -Werror -Wall -I../test/include/ -L../test/lib/ -o comp.elf *.o -lgbage
 		if %ERRORLEVEL% GTR 0 goto crash
 		
 		del /Q *.o
 		
 		objcopy -O binary comp.elf comp.gba
-		
 		if %ERRORLEVEL% GTR 0 goto crash
 		
 		move comp.elf ../test/bin
