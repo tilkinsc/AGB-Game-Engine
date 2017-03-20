@@ -30,9 +30,9 @@ void clear_buffer(vu16* buffer, u16 color) {
 
 vu16* flip_buffer(vu16* buffer) {
 	if(buffer == VRAMf) {
-		*Display &= ~VRAM_BUFFER;
+		*DISPLAY &= ~VRAM_BUFFER;
 		return VRAMb;
 	}
-	*Display |= VRAM_BUFFER;
+	*DISPLAY |= VRAM_BUFFER;
 	return VRAMf;
 }
