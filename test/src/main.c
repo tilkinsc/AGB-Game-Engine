@@ -80,7 +80,7 @@ void ccb() {
 
 int main(void) {
 	
-	*Display = (MODE_0 | BG0 | BG1 | SP_ENABLE | SP_MAP_1D);
+	*DISPLAY = (MODE_0 | BG_0 | BG_1 | SP_ENABLE | SP_MAP_1D);
 	
 	init_background(&background0, bg0c, bg0xs, bg0ys, 1, 0, 0, 1, 8, 0, 0);
 	init_background(&background1, bg1c, bg1xs, bg1ys, 0, 2, 0, 1, 24, 0, 0);
@@ -89,7 +89,7 @@ int main(void) {
 	
 	// background/map
 	// bg 1
-	dma3_16((u16*)palette_A_bmp, (u16*)BG_PRAM, 256);
+	dma3_16((u16*)palette_A_bmp, (u16*)PRAM_BG, 256);
 	dma3_16((u16*)pixel_A_bmp, (u16*)char_block(0), width_A_bmp * height_A_bmp);
 	dma3_16((u16*)asd_map, (u16*)screen_block(8), asd_map_width * asd_map_height);
 	// bg 2
@@ -97,7 +97,7 @@ int main(void) {
 	dma3_16((u16*)font_map, (u16*)screen_block(24), font_map_width * font_map_height);
 	
 	// sprite
-	dma3_16((u16*)koopa_palette, (u16*)SP_PRAM, 256);
+	dma3_16((u16*)koopa_palette, (u16*)PRAM_SP, 256);
 	dma3_16((u16*)koopa_data, (u16*)SIM, koopa_width * koopa_height);
 	
 	kupo_sp = init_sprite(0, 0, 0, 2, 2, 0, 0, 16, 0);
