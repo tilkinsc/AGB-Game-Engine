@@ -10,6 +10,8 @@
 
 #include "types.h"
 
+#define MAX_SPRITES 128
+
 typedef struct Sprite {
 	u16 att0;
 	u16 att1;
@@ -17,11 +19,11 @@ typedef struct Sprite {
 	u16 att3;
 } Sprite;
 
-Sprite sprites[128];
+Sprite sprites[MAX_SPRITES];
 
 u32 sprite_index;
 
-Sprite* init_sprite(u32 x, u32 y, u32 sizex, u32 sizey, u32 hflip, u32 vflip, u32 tindex, u32 priority);
+Sprite* init_sprite(u32 index, u32 x, u32 y, u32 sizex, u32 sizey, u32 hflip, u32 vflip, u32 tindex, u32 priority);
 
 void draw_sprites();
 

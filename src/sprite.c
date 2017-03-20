@@ -10,25 +10,26 @@
 #include "gba.h"
 
 
-Sprite* init_sprite(u32 x, u32 y, u32 sizex, u32 sizey, u32 hflip, u32 vflip, u32 tindex, u32 priority) {
-	sprites[sprite_index].att0 =
+Sprite* init_sprite(u32 index, u32 x, u32 y, u32 sizex, u32 sizey, u32 hflip, u32 vflip, u32 tindex, u32 priority) {
+	// if index > MAX_SPRITES, error
+	sprites[index].att0 =
 			 y			|
 			(0 << 8)	|
 			(0 << 10)	|
 			(0 << 12)	|
 			(1 << 13)	|
 			(sizex << 14);
-	sprites[sprite_index].att1 =
+	sprites[index].att1 =
 			 x			|
 			 (0 << 9)	|
 			 (hflip << 12)	|
 			 (vflip << 13)	|
 			 (sizey << 14);
-	sprites[sprite_index].att2 =
+	sprites[index].att2 =
 			 tindex			|
 			(priority << 10)|
 			(0 << 12);
-	return &sprites[sprite_index++];
+	return &sprites[index];
 }
 
 // TODO: check out
